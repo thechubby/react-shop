@@ -13,10 +13,8 @@ ReactDOM.render(
         <Shop
             summary={ 0 }
             cart={ [] }
-            addBread={ () => {} }
-            addEggs={ () => {} }
-            addBuckWheat={ () => {} }
-            del={ (iter: number) => {} }
+            add={ () => {} }
+            del={ () => {} }
         />
     </Provider>,
     document.getElementById('root')

@@ -1,6 +1,4 @@
-import { ACTION_ADD_BREAD } from '../shop';
-import { ACTION_ADD_EGGS } from '../shop';
-import { ACTION_ADD_BUCKWHEAT } from '../shop';
+import { ACTION_ADD } from '../shop';
 import { ACTION_DEL } from '../shop'
 
 interface StateInterface {
@@ -15,19 +13,7 @@ const initialState: StateInterface = {
 
 export const rootReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case ACTION_ADD_BREAD:
-            return {
-                ...state,
-                cart: state.cart.concat(action.payload[1]),
-                summary: state.summary + action.payload[0]
-            }
-        case ACTION_ADD_EGGS:
-            return {
-                ...state,
-                cart: state.cart.concat(action.payload[1]),
-                summary: state.summary + action.payload[0]
-            }
-        case ACTION_ADD_BUCKWHEAT:
+        case ACTION_ADD:
             return {
                 ...state,
                 cart: state.cart.concat(action.payload[1]),

@@ -1,19 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {bindActionCreators, Dispatch} from "redux";
-import {addBread, addBuckWheat, addEggs, del} from "./store/actions";
+import {add, del} from "./store/actions";
 
-export const ACTION_ADD_BREAD = 'ACTION_ADD_BREAD';
-export const ACTION_ADD_EGGS = 'ACTION_ADD_EGGS';
-export const ACTION_ADD_BUCKWHEAT = 'ACTION_ADD_BUCKWHEAT';
+export const ACTION_ADD = 'ACTION_ADD';
 export const ACTION_DEL = "ACTION_DEL"
 
 interface PropsInterface {
     summary: number,
     cart: string[],
-    addBread (cost: number, product: string): void,
-    addEggs (cost: number, product: string): void,
-    addBuckWheat (cost: number, product: string): void
+    add (cost: number, product: string): void,
     del(iter: number): void
 }
 
@@ -28,7 +24,7 @@ export class Shop extends React.Component<PropsInterface, StateInterface> {
     }
 
     render(): React.ReactNode {
-        let { summary, cart, addBread, addEggs, addBuckWheat, del } = this.props;
+        let { summary, cart, add, del } = this.props;
         return (
             <div>
                 <div>
@@ -37,15 +33,15 @@ export class Shop extends React.Component<PropsInterface, StateInterface> {
                         Вы выбрали:
                         <div>
                             Хлеб 20 рублей
-                            <button onClick={() => addBread(20, 'Хлеб')}>Добавить</button>
+                            <button onClick={() => add(20, 'Хлеб')}>Добавить</button>
                         </div>
                         <div>
                             Яйца 70 рублей
-                            <button onClick={() => addEggs(70, 'Яйца')}>Добавить</button>
+                            <button onClick={() => add(70, 'Яйца')}>Добавить</button>
                         </div>
                         <div>
                             Гречка 86 рублей
-                            <button onClick={() => addBuckWheat(86, 'Гречка')}>Добавить</button>
+                            <button onClick={() => add(86, 'Гречка')}>Добавить</button>
                         </div>
                     </div>
                         <div>
@@ -73,9 +69,7 @@ const putStateToProps = (state: PropsInterface) :object => {
 
 const putActionsToProps = (dispatch: Dispatch<any>) :object => {
     return {
-        addBread: bindActionCreators(addBread, dispatch),
-        addEggs: bindActionCreators(addEggs, dispatch),
-        addBuckWheat: bindActionCreators(addBuckWheat, dispatch),
+        add: bindActionCreators(add, dispatch),
         del: bindActionCreators(del, dispatch)
     }
 }
